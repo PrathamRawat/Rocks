@@ -36,8 +36,11 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
+  double xV, yV;
+  boolean move = true;
   Ball(float x, float y) {
-
+    xV = 1;
+    yV = 1;
     super(x, y);
   }
 
@@ -46,7 +49,10 @@ class Ball extends Thing implements Moveable {
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    xV = (int)Math.random() * 5;
+    yV = (int)Math.random() * 8;
+    x += xV;
+    y += yV;
   }
 }
 
