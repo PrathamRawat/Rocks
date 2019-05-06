@@ -22,16 +22,24 @@ class Rock extends Thing {
   }
 
   void display() {
-    /* ONE PERSON WRITE THIS */
+    fill(128,128,128);
+    ellipse(x, y, 20, 20);
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
+  boolean direction;
   LivingRock(float x, float y) {
     super(x, y);
+    direction = true;
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
+    if(x>= 1000) direction = false;
+    else if(x<0) direction = true;
+    if(direction){
+    x+=random(5);
+    }
+    else x-=random(5);
   }
 }
 
