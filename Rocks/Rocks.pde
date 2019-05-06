@@ -27,11 +27,18 @@ class Rock extends Thing {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  boolean direction;
   LivingRock(float x, float y) {
     super(x, y);
+    direction = true;
   }
   void move() {
+    if(x>= 1000) direction = false;
+    else if(x<0) direction = true;
+    if(direction){
     x+=random(5);
+    }
+    else x-=random(5);
   }
 }
 
