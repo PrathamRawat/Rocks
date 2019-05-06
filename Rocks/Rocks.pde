@@ -52,19 +52,45 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
+<<<<<<< HEAD
+  double xV, yV;
   Ball(float x, float y) {
-
     super(x, y);
+    xV = 1;
+    yV = 1;
+
+=======
+  PImage image;
+  
+  Ball(float x, float y) {
+    super(x, y);
+    image = loadImage("tabletennis.png");
   }
 
   void display() {
     /* ONE PERSON WRITE THIS */
-    fill(255, 0, 0);
-    ellipse(x, y, 20, 20);
+    image(image, x, y, 20, 20);
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+     boolean move = true;
+    if (x >= 500 && move){
+      xV -= (Math.random() * 5);
+    }
+    else{
+      xV = (Math.random() * 5);
+    }
+    if (y >= 500 && move){
+      yV -= (Math.random() * 5);
+    }
+    else{
+      yV = (Math.random() * 8);
+    }
+    if (x % 2 == 0){
+      move = false;
+    }
+    x += xV;
+    y += yV;
   }
 }
 
