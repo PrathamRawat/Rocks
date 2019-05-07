@@ -44,18 +44,13 @@ public class LivingRock extends Rock implements Moveable {
 }
 
 class Ball extends Thing implements Moveable {
-<<<<<<< HEAD
+  
+  PImage image;
   double xV, yV;
   Ball(float x, float y) {
     super(x, y);
     xV = 1;
     yV = 1;
-
-=======
-  PImage image;
-  
-  Ball(float x, float y) {
-    super(x, y);
     image = loadImage("tabletennis.png");
   }
 
