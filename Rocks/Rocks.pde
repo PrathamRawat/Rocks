@@ -78,6 +78,14 @@ class Ball extends Thing implements Moveable {
         image = loadImage("tennisball.png");
         size = 20;
         break;
+      case 3:
+        image = loadImage("pokeball.png");
+        size = 30;
+        break;
+      case 4:
+        image = loadImage("poloball.png");
+        size = 45;
+        break;
     }
   }
 
