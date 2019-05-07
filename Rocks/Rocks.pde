@@ -66,37 +66,66 @@ class Ball extends Thing implements Moveable {
   
   PImage image;
   double xV, yV;
+  float size;
+  boolean xDirection, yDirection;
+  
   Ball(float x, float y) {
     super(x, y);
     xV = 1;
     yV = 1;
-    image = loadImage("tabletennis.png");
+    xDirection = true;
+    yDirection = true;
+    int random = (int)(Math.random() * 5);
+    switch(random) {
+      case 0:
+        image = loadImage("tabletennis.png");
+        size = 5;
+        break;
+      case 1:
+        image = loadImage("basketball.png");
+        size = 50;
+        break;
+      case 2:
+        image = loadImage("tennisball.png");
+        size = 20;
+        break;
+      case 3:
+        image = loadImage("pokeball.png");
+        size = 30;
+        break;
+      case 4:
+        image = loadImage("poloball.png");
+        size = 45;
+        break;
+    }
   }
 
   void display() {
     /* ONE PERSON WRITE THIS */
-    image(image, x, y, 20, 20);
+    image(image, x, y, size, size);
   }
 
   void move() {
-     boolean move = true;
-    if (x >= 500 && move){
-      xV -= (Math.random() * 5);
+    if(x >= 1000 - size) {
+      xDirection = true;
+    } else if(x < 0) {
+      xDirection = false;
     }
-    else{
-      xV = (Math.random() * 5);
+    if(y >= 800 - size) {
+      yDirection = true;
+    } else if(y < 0) {
+      yDirection = false;
     }
-    if (y >= 500 && move){
-      yV -= (Math.random() * 5);
+    if(xDirection) {
+       x -= random(5);
+    } else {
+      x += random(5);
     }
-    else{
-      yV = (Math.random() * 8);
+    if(yDirection) {
+       y -= random(5);
+    } else {
+       y += random(5);
     }
-    if (x % 2 == 0){
-      move = false;
-    }
-    x += xV;
-    y += yV;
   }
 }
 
