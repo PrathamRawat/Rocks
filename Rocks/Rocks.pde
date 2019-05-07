@@ -6,6 +6,10 @@ interface Moveable {
   void move();
 }
 
+interface Collideable{
+  boolean isTouching(Thing other);
+}
+
 abstract class Thing implements Displayable {
   float x, y;//Position of the Thing
 
@@ -17,37 +21,44 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
+  PImage img;
   Rock(float x, float y) {
     super(x, y);
+    img = loadImage("rock.png");
   }
 
   void display() {
-    fill(128,128,128);
-    ellipse(x, y, 20, 20);
+    image(img,x,y,50,50);
   }
 }
 
 public class LivingRock extends Rock implements Moveable {
   boolean direction, direction2;
+  PImage img1;
   LivingRock(float x, float y) {
     super(x, y);
     direction = true;
     direction2 = true;
+    img1 = loadImage("eyes2.png");
+  }
+  void display(){
+    super.display();
+    image(img1,x+20,y+5,20,20);
   }
   void move() {
     if(x>= 1000) direction = false;
     else if(x<=0) direction = true;
     if(direction){
-    x+=random(5);
+    x+=5;
     }
-    else x-=random(5);
+    else x-=5;
     
     if(y>= 800) direction2 = false;
     else if(y<=0) direction2 = true;
     if(direction2){
-      y+=random(5);
+      y+=5;
     }
-    else y-=random(5);
+    else y-=5;
   }
 }
 
