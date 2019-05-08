@@ -22,9 +22,9 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing {
   PImage img;
-  Rock(float x, float y) {
+  Rock(float x, float y, PImage pic2) {
     super(x, y);
-    img = loadImage("rock.png");
+    img = pic2;
   }
 
   void display() {
@@ -35,11 +35,12 @@ class Rock extends Thing {
 public class LivingRock extends Rock implements Moveable {
   boolean direction, direction2;
   PImage img1;
-  LivingRock(float x, float y) {
-    super(x, y);
+  float t1,t2;
+  LivingRock(float x, float y, PImage pic,PImage pic3) {
+    super(x, y, pic3);
     direction = true;
     direction2 = true;
-    img1 = loadImage("eyes2.png");
+    img1 = pic;
   }
   void display(){
     super.display();
@@ -62,7 +63,7 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable {
+class Ball extends Thing implements Moveable, Collideable {
   
   PImage image;
   double xV, yV;
@@ -98,6 +99,10 @@ class Ball extends Thing implements Moveable {
         size = 45;
         break;
     }
+  }
+  
+  boolean isTouching(Thing other){
+    return false;
   }
 
   void display() {
@@ -177,7 +182,8 @@ ArrayList<Moveable> thingsToMove;
 
 void setup() {
   size(1000, 800);
-
+  PImage image10 = loadImage("eyes2.png");
+  PImage image11 = loadImage("rock.png");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
@@ -186,12 +192,16 @@ void setup() {
     thingsToDisplay.add(b);
     thingsToDisplay.add(ob);
     thingsToMove.add(b);
+<<<<<<< HEAD
     thingsToMove.add(ob);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
+=======
+    Rock r = new Rock(50+random(width-100), 50+random(height-100),image11);
+>>>>>>> 44fed8a54d932e750fc0c777040d86d23a5a3f92
     thingsToDisplay.add(r);
   }
   for (int i = 0; i < 3; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100),image10,image11);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
   }
