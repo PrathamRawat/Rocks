@@ -7,8 +7,9 @@
 #### 5/7
 - Fixed move method
 - Added more images for displaying balls
-#### 5/8
+#### 5/8 (Devin Absent)
 - Write ball subclasses
+- Optimize image loading for ball classes
 
 -----LIVINGROCK------
 
