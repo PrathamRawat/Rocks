@@ -129,6 +129,47 @@ class Ball extends Thing implements Moveable {
   }
 }
 
+class OddBall extends Ball {
+  
+  float xVel;
+  float yVel;
+  
+  OddBall(float x, float y) {
+    super(x, y);
+    xVel = 5;
+    yVel = 5;
+    int random = (int)(Math.random() * 3);
+    switch(random) {
+      case 0:
+        image = loadImage("football.png");
+        size = 20;
+        break;
+      case 1:
+        image = loadImage("rugbyball.png");
+        size = 20;
+        break;
+      case 2:
+        image = loadImage("spikeyball.png");
+        size = 10;
+        break;
+    }
+  }
+  
+  void move() {
+    if(x >= 1000 - size || x < 0) {
+      xVel *= -1;
+      yVel = random(15) - 7;
+    }
+    if(y >= 800 - size || y < 0) {
+      yVel *= -1;;
+      xVel = random(15) - 7;
+    }
+    x += xVel;
+    y += yVel;
+  }
+  
+}
+
 /*DO NOT EDIT THE REST OF THIS */
 
 ArrayList<Displayable> thingsToDisplay;
@@ -141,8 +182,11 @@ void setup() {
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
     Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    OddBall ob = new OddBall(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
+    thingsToDisplay.add(ob);
     thingsToMove.add(b);
+    thingsToMove.add(ob);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
   }
