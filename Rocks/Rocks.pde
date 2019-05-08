@@ -62,7 +62,7 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable {
+class Ball extends Thing implements Moveable, Collideable {
   
   PImage image;
   double xV, yV;
@@ -98,6 +98,10 @@ class Ball extends Thing implements Moveable {
         size = 45;
         break;
     }
+  }
+  
+  boolean isTouching(Thing other){
+    return false;
   }
 
   void display() {
