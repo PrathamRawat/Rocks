@@ -36,11 +36,14 @@ public class LivingRock extends Rock implements Moveable {
   boolean direction, direction2;
   PImage img1;
   float t1,t2;
+  float r,q;
   LivingRock(float x, float y, PImage pic,PImage pic3) {
     super(x, y, pic3);
     direction = true;
     direction2 = true;
     img1 = pic;
+    r = random(360);
+    q = random(360);
   }
   void display(){
     super.display();
@@ -50,16 +53,24 @@ public class LivingRock extends Rock implements Moveable {
     if(x>= 1000) direction = false;
     else if(x<=0) direction = true;
     if(direction){
-    x+=5;
+    r+=.1;
+    x= 100*cos(r/2) + 2*r;
     }
-    else x-=5;
+    else{
+      r-=.1;
+      x= 100*cos(r/2) + 2*r;
+    }
     
     if(y>= 800) direction2 = false;
     else if(y<=0) direction2 = true;
     if(direction2){
-      y+=5;
+      q+=.1;
+      y = 100*sin(q/2) + 2*q ;
     }
-    else y-=5;
+    else{
+      q-=.1;
+      y = 100*sin(q/2) + 2*q;
+    }
   }
 }
 
