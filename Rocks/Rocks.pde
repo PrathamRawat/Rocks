@@ -95,7 +95,7 @@ class Ball extends Thing implements Moveable, Collideable {
   }
   
   boolean isTouching(Thing other){
-    return false;
+    return (Math.sqrt((other.y - this.y) * (other.y - this.y) + (other.x - this.x) * (other.x - this.x)) == (0 + size); // distance formula
   }
 
   void display() {
