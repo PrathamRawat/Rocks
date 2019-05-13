@@ -10,6 +10,10 @@
 #### 5/8 (Devin Absent)
 - Write ball subclasses
 - Optimize image loading for ball classes
+#### 5/12 Devin
+- Implemented collideable
+- Added tints and collision detection
+
 
 -----LIVINGROCK------
 
@@ -21,4 +25,4 @@ We got the pictures of the rocks off the internet (outside source?)
 
 5/8 => I moved the loading of the image into setup so it only loads once
 
-5/9 => Changed how livingrock moves, now it moves in a spiral pattern and bounces off the walls 
+5/9 => Changed how livingrock moves, now it moves in a spiral pattern and bounces off the walls
