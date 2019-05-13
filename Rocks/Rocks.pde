@@ -233,6 +233,7 @@ void setup() {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100),image10,image11);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
+    ListOfCollideables.add(m);
   }
 }
 void draw() {
