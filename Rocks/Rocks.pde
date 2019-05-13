@@ -8,6 +8,9 @@ interface Moveable {
 
 interface Collideable{
   boolean isTouching(Thing other);
+  void rCollide();
+  float xV;
+  float yV;
 }
 
 abstract class Thing implements Displayable {
