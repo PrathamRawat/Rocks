@@ -20,7 +20,7 @@ abstract class Thing implements Displayable, Collideable {
     this.y = y;
   }
   boolean isTouching(Thing other){
-    if (dist(x,y,other.x,other.y) <= (25)){ // distance formula
+    if (dist(x,y,other.x,other.y) <= (32)){ // distance formula
       return true;
     }
     else{
@@ -39,6 +39,7 @@ class Rock extends Thing {
   }
 
   void display() {
+     noTint();
     image(img,x,y,50,50);
   }
 }
