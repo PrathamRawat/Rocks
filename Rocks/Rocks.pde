@@ -8,18 +8,26 @@ interface Moveable {
 
 interface Collideable{
   boolean isTouching(Thing other);
-  void rCollide();
-  float xV;
-  float yV;
 }
 
-abstract class Thing implements Displayable {
+abstract class Thing implements Displayable, Collideable {
   float x, y;//Position of the Thing
+  
+  
 
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
   }
+  boolean isTouching(Thing other){
+    if (Math.sqrt((other.y - this.y) * (other.y - this.y) + (other.x - this.x) * (other.x - this.x)) <= (10)){ // distance formula
+      return true;
+    }
+    else{
+      return false;
+    }
+  } 
+  
   abstract void display();
 }
 
@@ -77,7 +85,7 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable, Collideable {
+class Ball extends Thing implements Moveable {
   
   PImage image;
   double xV, yV;
@@ -94,13 +102,16 @@ class Ball extends Thing implements Moveable, Collideable {
     this.size = size;
   }
   
-  boolean isTouching(Thing other){
-    return (Math.sqrt((other.y - this.y) * (other.y - this.y) + (other.x - this.x) * (other.x - this.x)) == (0 + size); // distance formula
-  }
+
 
   void display() {
     /* ONE PERSON WRITE THIS */
     image(image, x, y, size, size);
+    for( Collideable c : ListOfCollideables) {
+       if (c.isTouching(this)){
+         tint(255,0,0);
+       }
+    }
   }
 
   void move() {
@@ -157,6 +168,7 @@ class OddBall extends Ball {
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
+ArrayList<Collideable> ListOfCollideables;
 
 void setup() {
   size(1000, 800);
@@ -172,6 +184,7 @@ void setup() {
   PImage image7 = loadImage("spikeyball.png");
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
+  ListOfCollideables = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
     Ball b = null;
     switch((int)(Math.random() * 5)) {
@@ -209,6 +222,7 @@ void setup() {
     thingsToMove.add(ob);
     Rock r = new Rock(50+random(width-100), 50+random(height-100),image11);
     thingsToDisplay.add(r);
+    ListOfCollideables.add(r);
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100),image10,image11);
