@@ -20,7 +20,7 @@ abstract class Thing implements Displayable, Collideable {
     this.y = y;
   }
   boolean isTouching(Thing other){
-    if (Math.sqrt((other.y - this.y) * (other.y - this.y) + (other.x - this.x) * (other.x - this.x)) <= (10)){ // distance formula
+    if (dist(x,y,other.x,other.y) <= (25)){ // distance formula
       return true;
     }
     else{
@@ -106,12 +106,16 @@ class Ball extends Thing implements Moveable {
 
   void display() {
     /* ONE PERSON WRITE THIS */
-    image(image, x, y, size, size);
+    noTint();
     for( Collideable c : ListOfCollideables) {
        if (c.isTouching(this)){
          tint(255,0,0);
        }
+       else{
+         
     }
+    image(image, x, y, size, size);
+  }
   }
 
   void move() {
